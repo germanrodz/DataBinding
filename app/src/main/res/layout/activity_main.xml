@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Change the parent laytout ot be the 'laout' tag -->
+<layout>
+
+    <!--Add the 'data' tag for addingn alll the class you want to use -->
+    <data>
+        <!--Add different variables for classes ou want to use in th eXML-->
+        <variable
+            name="person"
+            type="com.blovvme.databinding.Person" />
+        <variable
+            name="viewmodel"
+            type="com.blovvme.databinding.ViewModel"/>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context="com.blovvme.databinding.MainActivity">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@{person.firstName}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@{person.lastName}" />
+
+        <Button
+            android:onClick="@{viewmodel::onClick}"
+            android:text="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:onClick="@{view -> viewmodel.onClickPojo(view, person)}"
+            android:text="onClick(Person)"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:addTextChangedListener = "@{person.watcherFirstName}"
+            android:hint="Fist Name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:addTextChangedListener = "@{person.watcherLastName}"
+            android:hint="Last Name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:onClick="@{view -> viewmodel.onClickObs(view,person)}"
+            android:text="onclick (Person obs)"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</layout>
